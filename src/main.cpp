@@ -13,27 +13,38 @@ using namespace ftxui;
 
 int main(int argc, char const *argv[])
 {
-    fstream file;
-    file.open(".assetd/images/cañon.txt");
-string c = cañon.
+    fstream archivo;
 
-fstream alien;
-alien.open(".assetd/images/")
+    archivo.open("./assetd/images/canon.txt");
+Elements lineas;
 
-    int fotograma = 0;
-    while(true)
+    while(|archivo.eof())
 
     {
-        fotograma++;
-        Element lienzo = hbox({
-            Element personaje = spinner(21.1) | bold | color(color::Blue1) | bgcolor(Color::Green)});
-            Element tanque = text(cañon) | bold | color(Color::Green) | bgcolor(Color::Blue);
-            Element lienzo = hbox({personajr , tanque });
+        string linea;
+        getline(archivo.linea);
+        lineas.emplace_back(text(linea));
+            
+    }
+
+archivo >> canon;
+archivo.close();
+
+archivo.open("./assets/images/alien.txt");
+string alien;
+archivo.close();
+
+int fotograma=0;
+while(true){
+
+    fotograma++;
+    Element tanque = canon | bold | color(Color::Green1) | bgcolor(Color::Blue1);
+    Element personaje = spinner(21,fotograma) | bold | color(Color::Blue1) | bgcolor(Color::Green1);
+    Element lienzo = hbox({personaje , tanque});
 
     Screen pantalla = Screen::Create(
-    Dimension::Full(),
-    Dimension::Fit(lienzo);
-
+        Dimension::Full(),
+        Dimension::Fit(lienzo)
     );
 
     Render(pantalla,lienzo);
@@ -42,7 +53,7 @@ cout<<pantalla.ResetPosition();
 
 pantalla.ResetPosition();
    
-   this_thread::sleep_for(0.1s)
+   this_thread::sleep_for(0.1s);
     }
     return 0;
 }
