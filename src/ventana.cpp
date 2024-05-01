@@ -3,39 +3,36 @@
 #include <ftxui/dom/elements.hpp>
 #include <ftxui/screen/screen.hpp>
 #include <thread>
+#include <experimental/random>
 using namespace std;
 using namespace ftxui;
 
+
 int main(int argc, char const *argv[])
+    {
+        list<Dibujo> dibujo;
 
-{
-    string palabra="DVD";
-    int posicionInicialX = 0;
-    int posicionInicialY = 0;
+        for (int i = 0; i < 20; i++)
 
-    auto Pantalla = Screen::Create(Dimension::Full(), Dimension::Full(10));
-   
-   while(true){
-this_thread::sleep_for(0.1s);
+    {
+        Dibujo palabraa("Hola" + to string(i),experimental::randit(0,20),experimental::randit(0,20));
+        dibujos.push_back(palabra);
+    }
 
-int posicionPalabraX=0;
-int posicionPalabraY=0;
+    auto Pantalla=Screen::Create(Dimension::Full(),Dimenssion::Full());
 
-for (auto&&letra : palabra)
-{
-    int posicionfinalX=posicionInicialX+posicionPalabraX;
-    int posicionfinalY=posicionInicialY+posicionPalabraY;
+    while(true){
+        Pantalla.Clear();
+        this_thread::sleep_for(0.1s);
+        for (auto &&i : dibujos)
+        {
+            i.DesplazarX(1);
+        }
 
-    Pantalla.PixelAt(posicionfinalX, posicionfinalY).character = letra;
-    posicionPalabra++;
-}
 Pantalla.Print();
-Pantalla.Clear();
 
 cout<<Pantalla.ResetPosition();
 
-posicionInicialX++;
-posicionInicialY++;
    }
     return 0;
 }
